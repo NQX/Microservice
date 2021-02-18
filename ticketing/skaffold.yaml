@@ -1,0 +1,14 @@
+apiVersion: skaffold/v2beta11
+kind: Config
+metadata:
+  name: ticketing
+build:
+  artifacts:
+  - image: nqx1/auth
+    context: auth
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - infra/k8s/auth-depl.yaml

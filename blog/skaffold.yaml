@@ -1,0 +1,26 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifest:
+      - ./infra/k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: nqx1/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      synd:
+        manual:
+          - src: 'src/**/*.js'
+            dest: .
+    - image: nqx1/comments
+      context: comments
+      docker:
+        dockerfile: Dockerfile
+      synd:
+        manual:
+          - src: '*.js'
+            dest: .
