@@ -1,6 +1,6 @@
-
-
-
+apiVersion: skaffold/v2alpha
+kind: Config
+deploy:
   kubectl:
     manifests:
       - ./infra/k8s/*
@@ -24,3 +24,11 @@ build:
       manual:
         - src: '**/*.js'
           dest: .
+  - image: nqx1/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
