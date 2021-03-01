@@ -2,12 +2,14 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import { app } from '../app';
 import request from 'supertest'
+import jwt from 'jsonwebtoken';
+
 
 
 declare global {
     namespace NodeJS {
         interface Global {
-            signin(): Promise<string[]>;
+            signin(): string[];
         }
     }
 }
@@ -42,18 +44,46 @@ afterAll(async () => {
 })
 
 
-global.signin = async () => {
-    const email = 'test@test.com';
-    const password = 'password';
+// global.signin = async () => {
+//     const email = 'test@test.com';
+//     const password = 'password';
 
-    const response = await request(app)
-        .post('/api/users/signup')
-        .send({
-            email, password
-        })
-        .expect(201)
+//     const response = await request(app)
+//         .post('/api/users/signup')
+//         .send({
+//             email, password
+//         })
+//         .expect(201)
 
-    const cookie = response.get('Set-Cookie');
+//     const cookie = response.get('Set-Cookie');
 
-    return cookie;
+//     return cookie;
+// }
+
+globalThis.signin =  () => {
+    //build a jwt payload {id, email }
+    const payload = {
+        id: 'asdsdf',
+        email: 'test@test.com'
+    };
+
+
+    //create jwt token
+    const token = jwt.sign(payload, process.env.JWT_KEY!);
+
+
+    //build session object {jwt: MY_JWT }
+    const session = { jwt: token };
+
+
+    //turn session into json
+    const session = JSON.stringify(session);
+
+
+    //take json and encode itas base64
+    const base64 = Buffer.from(sessionJSON).toString('base64');
+
+
+    //return a string thats the cookie with encoded data
+    return [`express:sess=${base64}`]
 }
