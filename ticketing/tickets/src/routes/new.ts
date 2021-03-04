@@ -1,4 +1,4 @@
-import express, {request, response} from 'express';
+import express, { Request, Response } from 'express';
 import{ requireAuth, validateRequest } from '@nqx1/common';
 import { body } from 'express-validator';
 import { Ticket } from '../models/ticket';
@@ -12,7 +12,8 @@ router.post('/api/tickets', requireAuth, [
     body('price').isFloat({ gt: 0 }).withMessage('Price must be greater than 0')
 
 
-], validateRequest, 
+], 
+validateRequest, 
 async (req: Request, res: Response) => {
     const { title, price } = req.body;
     const ticket = Ticket.build({

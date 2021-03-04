@@ -1,4 +1,4 @@
-import express, { Request, Respones } from 'express';
+import express, { Request, Response } from 'express';
 import { Ticket } from '../models/ticket';
 import { NotFoundError } from '@nqx1/common'
 

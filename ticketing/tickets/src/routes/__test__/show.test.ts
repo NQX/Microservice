@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../../app';
+import { app } from '../../app';
 import { Ticket } from '../../models/ticket';
 import mongoose from 'mongoose'
 
@@ -17,7 +17,7 @@ it('returns ticket if ticket is found', async () => {
     const title = 'concert';
     const price = 20;
 
-    const response = request(app)
+    const response = await request(app)
         .post('/api/tickets')
         .set('Cookie', global.signin())
         .send({
@@ -26,7 +26,7 @@ it('returns ticket if ticket is found', async () => {
         })
         .expect(201)
 
-    const ticketResponse = request(app)
+    const ticketResponse = await request(app)
         .get(`/api/tickets/${response.body.id}`)
         .send()
         .expect(200);

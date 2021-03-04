@@ -70,7 +70,7 @@ it('it creates a ticket with valid inputs', async () => {
     expect(tickets.length).toEqual(0)
 
     await request(app)
-        .post('/api/ticketrs')
+        .post('/api/tickets')
         .set('Cookie', global.signin())
         .send({
             title: 'asdfas',

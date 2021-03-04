@@ -8,7 +8,7 @@ it('returns 404 if provided id does not exist', async () => {
 
     await request(app)
         .put(`/api/tickets/${id}`)
-        .set('Cookie', global.singin())
+        .set('Cookie', global.signin())
         .send({
             title: 'asdfs',
             price: 20
@@ -39,7 +39,7 @@ it('returns 401 if user does not own the ticket', async () => {
 
     await request(app)
         .put(`/api/tickets/${response.body.id}`)
-        .set('Cookie', global.singin())
+        .set('Cookie', global.signin())
         .send({
             title: 'afefefefefefe',
             price: 10000
@@ -100,9 +100,10 @@ it('updates ticket provided valid inputs', async () => {
         })
         .expect(200)
 
-    const ticketResponse =  request(app)
+    const ticketResponse = await request(app)
         .get(`/api/tickets/${response.body.id}`)
         .send();
+
     expect(ticketResponse.body.title).toEqual('new title')
     expect(ticketResponse.body.price).toEqual(100)
 

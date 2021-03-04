@@ -60,7 +60,7 @@ afterAll(async () => {
 //     return cookie;
 // }
 
-globalThis.signin =  () => {
+global.signin =  () => {
     //build a jwt payload {id, email }
     const payload = {
         id: new mongoose.Types.ObjectId().toHexString(),
@@ -77,7 +77,7 @@ globalThis.signin =  () => {
 
 
     //turn session into json
-    const session = JSON.stringify(session);
+    const sessionJSON = JSON.stringify(session);
 
 
     //take json and encode itas base64

@@ -2,7 +2,7 @@ import express from 'express';
 import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
-import createTicketRouter from './routes/new';
+import { createTicketRouter } from './routes/new';
 import { errorHandler, NotFoundError, currentUser } from '@nqx1/common';
 import { showTicketRouter } from './routes/show';
 import { indexTicketRouter } from './routes/index';
