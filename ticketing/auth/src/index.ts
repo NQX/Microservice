@@ -1,9 +1,15 @@
 import mongoose from 'mongoose';
-
+import dotenv from 'dotenv'; 
 import { app } from './app';
 
 
 const start = async () => {
+
+    //TODO only for debug
+    dotenv.config({ path: __dirname + '/../.env'})
+
+    console.log(process.env.JWT_KEY);
+    
 
     if (!process.env.JWT_KEY) {
         throw new Error('JWT_KEY must be defeined');
