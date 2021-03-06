@@ -1,7 +1,10 @@
 import mongoose from 'mongoose';
-
+import dotenv from 'dotenv';
 import { app } from './app';
 
+
+ //TODO only for debug
+ dotenv.config({ path: __dirname + '/../.env'})
 
 const start = async () => {
 

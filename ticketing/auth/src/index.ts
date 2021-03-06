@@ -8,7 +8,6 @@ const start = async () => {
     //TODO only for debug
     dotenv.config({ path: __dirname + '/../.env'})
 
-    console.log(process.env.JWT_KEY);
     
 
     if (!process.env.JWT_KEY) {
