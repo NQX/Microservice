@@ -29,7 +29,7 @@ const start = async () => {
         console.log(err);
     }
 
-    app.listen(3000, ()=> console.log('running on 3000'));
+    app.listen(3001, ()=> console.log('running on 3000'));
 }
 
 start();
