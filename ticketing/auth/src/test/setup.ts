@@ -5,7 +5,7 @@ import request from 'supertest'
 import dotenv from 'dotenv';
 
 
-dotenv.config({ path: __dirname + "../../.env"})
+dotenv.config({ path: __dirname + "/../../.env"})
 
 
 declare global {
@@ -20,8 +20,6 @@ declare global {
 let mongo: any;
 
 beforeAll( async() => {
-    //process.env.JWT_KEY = 'asdf';
-
     mongo = new MongoMemoryServer();
     const mongoUri = await mongo.getUri();
 

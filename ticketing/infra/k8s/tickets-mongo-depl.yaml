@@ -7,14 +7,14 @@ spec:
   selector:
     matchLabels:
       app: tickets-mongo
-    template:
-      metadata:
-        labels:
-          app: tickets-mongo
-      spec:
-        containers:
-          - name: tickets-mongo
-            image: mongo
+  template:
+    metadata:
+      labels:
+        app: tickets-mongo
+    spec:
+      containers:
+        - name: tickets-mongo
+          image: mongo
 ---
 apiVersion: v1
 kind: Service

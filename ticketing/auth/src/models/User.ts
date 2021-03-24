@@ -31,6 +31,7 @@ const userSchema = new mongoose.Schema({
         required: true
     }
 },{
+    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
     toJSON: {
         transform(doc, ret) {
             ret.id = ret._id;

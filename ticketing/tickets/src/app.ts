@@ -8,6 +8,8 @@ import { showTicketRouter } from './routes/show';
 import { indexTicketRouter } from './routes/index';
 import { updateTicketRouter } from './routes/update';
 
+import cors from 'cors';
+
 
 
 
@@ -22,6 +24,12 @@ app.use(
 );
 
 app.use(currentUser);
+
+
+
+//TODO only for debug
+app.use(cors())
+
 
 
 app.use(createTicketRouter);

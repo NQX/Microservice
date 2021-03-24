@@ -20,7 +20,6 @@ it('can fetch a list of tickets', async () => {
         .get('/api/tickets')
         .send()
         .expect(200)
-    
-    expect(response.body.length).toEqual(3);
-    
+
+    expect(response.body.length).toEqual(3);    
 })

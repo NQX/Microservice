@@ -91,6 +91,7 @@ it('updates ticket provided valid inputs', async () => {
             price: 20
         });
 
+
     await request(app)
         .put(`/api/tickets/${response.body.id}`)
         .set('Cookie', cookie)
