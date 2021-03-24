@@ -62,7 +62,7 @@ it('disallow duplicate email', async () => {
 });
 
 it('sets a cookie after successful signup', async () => {
-    const response = request(app)
+    const response = await request(app)
     .post('/api/users/signup')
     .send({
         email: 'test@test.de',

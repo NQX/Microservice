@@ -12,7 +12,8 @@ import { signupRouter } from './routes/signup';
 import { errorHandler, NotFoundError } from '@nqx1/common';
 
 
-dotenv.config({ path: __dirname + "../.env"})
+dotenv.config({ path: __dirname + '/../.env'})
+
 
 const app = express();
 app.set('trust proxy', true);
