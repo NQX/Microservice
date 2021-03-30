@@ -2,12 +2,13 @@ import express, { Request, Response } from 'express';
 import{ requireAuth, validateRequest } from '@nqx1/common';
 import { body } from 'express-validator';
 import { Ticket } from '../models/ticket';
+import { TicketCreatedPublisher } from '../events/publishers/ticket-created-publisher'
+import { natsWrapper } from '../nats-wrapper';
 
 
 
 const router = express.Router();
 
-// TODO dev only
 
 router.post('/api/tickets', requireAuth, [
     body('title').not().isEmpty().withMessage('Title is required'),
@@ -30,14 +31,19 @@ async (req: Request, res: Response) => {
         images,
         long_address,
         rating,
-        //userId: req.currentUser!.id //dev
-        userId: 'dev'
+        userId: req.currentUser!.id 
+        //userId: 'dev'
     });
 
-    //console.log('after build ', ticket)
 
     try {
         await ticket.save();
+        await new TicketCreatedPublisher(natsWrapper.client).publish({
+            id: ticket.id,
+            title: ticket.title,
+            price: ticket.price,
+            userId: ticket.userId
+        });
     } catch (err) {
         console.log('error in save', err)
         throw new Error('hilfe')
