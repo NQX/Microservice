@@ -2,7 +2,7 @@ import express from 'express';
 import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
-import dotenv from 'dotenv';
+//import dotenv from 'dotenv';
 
 
 import { currentUserRouter } from './routes/current-user';
@@ -12,7 +12,7 @@ import { signupRouter } from './routes/signup';
 import { errorHandler, NotFoundError } from '@nqx1/common';
 
 
-dotenv.config({ path: __dirname + '/../.env'})
+//dotenv.config({ path: __dirname + '/../.env'})
 
 
 const app = express();
